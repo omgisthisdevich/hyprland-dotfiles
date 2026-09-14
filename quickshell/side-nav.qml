@@ -11,15 +11,17 @@ PanelWindow {
 
     color: "transparent"
 
-    implicitHeight: 50
+    implicitHeight: 70 
 
     RowLayout{
         anchors.fill: parent
 
         Rectangle{
-            color: "blue"
+            color: "transparent"
             Layout.fillWidth: true
             Layout.fillHeight: true
+
+            LeftPanel{}
 
 
             // Workspace{
