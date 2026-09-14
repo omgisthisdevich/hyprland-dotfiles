@@ -3,7 +3,7 @@
 
 # to use this in the bashrc, for example:
 #
-# colorss=(33 69 105 141 177 213)
+colorss=(33 69 105 141 177 213)
 PS1='╭─\[$(colour_username "$USER" colorss)\] × $(date +%X) \W \n╰──►'
 
 
