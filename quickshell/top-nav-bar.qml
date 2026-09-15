@@ -49,7 +49,8 @@ PanelWindow {
             color: "red"
             Layout.fillWidth: true
             Layout.fillHeight: true
-
+            
+            RightPanel{}
         }
 
 
