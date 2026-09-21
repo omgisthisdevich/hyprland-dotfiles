@@ -71,8 +71,9 @@ Rectangle{
                         text: "󰤨"
                         font.pixelSize: 20
                     }
-
                 }
+
+                ThresholdButton{}
             }
         }
 
