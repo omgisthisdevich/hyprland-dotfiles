@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-
+import Quickshell.Io
 
 
 Rectangle{
@@ -28,7 +28,7 @@ Rectangle{
 
                     PlaceholderText{
                         text: ``
-                        font.pixelSize: 20
+
                     }
 
                 }
@@ -39,7 +39,7 @@ Rectangle{
 
                     PlaceholderText{
                         text: ""
-                        font.pixelSize: 20
+
                     }
 
                 }
@@ -49,7 +49,7 @@ Rectangle{
 
                     PlaceholderText{
                         text: ""
-                        font.pixelSize: 20
+
                     }
 
                 }
@@ -59,21 +59,35 @@ Rectangle{
 
                     PlaceholderText{
                         text: "󰂯"
-                        font.pixelSize: 20
+
                     }
 
                 }
-                PlaceholderButton{
-                    radius: 20
-                    width: 40
+                ThresholdButton{
+                    value: timeCollector.text.split(':')[2]
+                    icons: ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
 
-                    PlaceholderText{
-                        text: "󰤨"
-                        font.pixelSize: 20
+                    leftClick: ["sh", "-c", "nmtui"]
+                    rightClick: []
+
+                    Process {
+                        id: wifiQuery 
+                        command: ["sh", "-c", "nmcli -t  -f IN-USE,SSID,SIGNAL,SECURITY,RATE dev wifi list | grep '^\*'"]
+                        stdout: StdioCollector {
+                            id: timeCollector 
+                        }
                     }
-                }
 
-                ThresholdButton{}
+                    Timer{
+                        running:true
+                        repeat: true
+
+                        onTriggered: {
+                            wifiQuery.running= true 
+                        }
+                    }
+
+                }
             }
         }
 

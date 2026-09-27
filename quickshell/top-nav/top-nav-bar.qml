@@ -22,19 +22,6 @@ PanelWindow {
             Layout.fillHeight: true
 
             LeftPanel{}
-
-
-            // Workspace{
-            //     color: "#123456"
-            //     width: 50
-            // }
-            // Workspace{
-            //     color: "#123457"
-            //     width: 50
-            // } 
-            // Workspace{
-            //     width: 100
-            // }
         }
         Rectangle{
             color: "transparent"
@@ -46,7 +33,7 @@ PanelWindow {
         }
 
         Rectangle{
-            color: "red"
+            color: "transparent"
             Layout.fillWidth: true
             Layout.fillHeight: true
             
