@@ -1,15 +1,18 @@
 import QtQuick
 import Quickshell.Widgets
+import Quickshell.Io
 
 Rectangle {
     id: btn
-    width: 30
+    width: 50
     height: 30
-    color: "#333333"
+    color: hoverArea.containsMouse ? "#333333" : "#444444"
     radius: 10 
 
-    property real value: 55
-    property var icons: ["0", "25", "50", "75", "100"] 
+    required property real value
+    property var icons: ["0", "20", "40", "60", "80"] 
+    property var rightClick: ["sh", "-c"] 
+    property var leftClick: ["sh", "-c"] 
 
     PlaceholderText{
         id: iconValue
@@ -25,5 +28,25 @@ Rectangle {
                 return icons[i]
             }
         }
+    }
+    MouseArea{
+        anchors.fill: parent
+        hoverEnabled: true
+        id: hoverArea
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+        onClicked: (mouse) => {
+            if (mouse.button === Qt.RightButton) {
+                console.log("right clicked")
+                buttonClicked.command = rightClick
+            } else if (mouse.button === Qt.LeftButton) {
+                buttonClicked.command = leftClick
+            }
+            buttonClicked.running = true
+        }
+        Process {
+            id: buttonClicked
+        }
+
     }
 }
