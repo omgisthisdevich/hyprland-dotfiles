@@ -11,8 +11,8 @@ Rectangle {
 
     required property real value
     property var icons: ["0", "20", "40", "60", "80"] 
-    property var rightClick: ["sh", "-c"] 
-    property var leftClick: ["sh", "-c"] 
+    property var rightClick: ["kitty", "-e"] 
+    property var leftClick: ["kitty", "-e"] 
 
     PlaceholderText{
         id: iconValue
@@ -41,10 +41,12 @@ Rectangle {
                 buttonClicked.command = rightClick
             } else if (mouse.button === Qt.LeftButton) {
                 buttonClicked.command = leftClick
+                console.log("right clicked")
             }
             buttonClicked.running = true
         }
         Process {
+            running: false
             id: buttonClicked
         }
 

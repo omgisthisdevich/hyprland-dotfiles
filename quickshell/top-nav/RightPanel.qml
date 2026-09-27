@@ -67,7 +67,7 @@ Rectangle{
                     value: timeCollector.text.split(':')[2]
                     icons: ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
 
-                    leftClick: ["sh", "-c", "nmtui"]
+                    leftClick: ["kitty", "-e", "nmtui"] 
                     rightClick: []
 
                     Process {
