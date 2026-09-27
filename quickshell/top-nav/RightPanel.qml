@@ -67,8 +67,8 @@ Rectangle{
                     value: timeCollector.text.split(':')[2]
                     icons: ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
 
-                    leftClick: ["kitty", "-e", "nmtui"] 
-                    rightClick: []
+                    rightClick: ["kitty", "-e", "nmtui"] 
+                    leftClick: []
 
                     Process {
                         id: wifiQuery 
