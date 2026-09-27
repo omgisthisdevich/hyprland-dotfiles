@@ -41,9 +41,10 @@ Rectangle {
                 buttonClicked.command = rightClick
             } else if (mouse.button === Qt.LeftButton) {
                 buttonClicked.command = leftClick
-                console.log("right clicked")
+                console.log("left clicked")
             }
-            buttonClicked.running = true
+            if (!buttonClicked.running)
+                buttonClicked.running = true
         }
         Process {
             running: false
