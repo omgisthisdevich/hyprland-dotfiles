@@ -32,17 +32,6 @@ Rectangle{
                     }
 
                 }
-
-                PlaceholderButton{
-                    radius: 20
-                    width: 40
-
-                    PlaceholderText{
-                        text: ""
-
-                    }
-
-                }
                 PlaceholderButton{
                     radius: 20
                     width: 40
@@ -63,6 +52,33 @@ Rectangle{
                     }
 
                 }
+                ThresholdButton{
+                    value: audioCollector.text.split(':')[1]*100 // output presents in 0-1.0
+                    icons: [" ", " ", " ", " "]
+
+                    rightClick: ["kitty", "-e", "nmtui"] 
+                    leftClick: []
+
+                    Process {
+                        id: audioOutQuery
+                        command: ["sh", "-c", "wpctl get-volume @DEFAULT_AUDIO_SINK@"]
+                        stdout: StdioCollector {
+                            id: audioCollector 
+                        }
+                    }
+
+                    Timer{
+                        running:true
+                        repeat: true
+
+                        onTriggered: {
+                            audioOutQuery.running= true 
+                        }
+                    }
+
+                }
+
+
                 ThresholdButton{
                     value: timeCollector.text.split(':')[2]
                     icons: ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
