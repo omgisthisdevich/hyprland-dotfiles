@@ -50,9 +50,12 @@ Rectangle{
                         text: muteStateCollector.text == 1 ? ` ` : ``
 
                     }
+                    buttonClick: () => {
+                        micToggle.running = true
+                    }                    
                     Process{
                         id: micToggle
-                        command: ["sh", "-c", `wpctl set-mute @DEFAULT_AUDIO_SOURCE@ ${micState}`]
+                        command: ["sh", "-c", `wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle`]
                         running: false
                     }
                     Process{
