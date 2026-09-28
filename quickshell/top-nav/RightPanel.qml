@@ -56,7 +56,7 @@ Rectangle{
                     value: audioCollector.text.split(':')[1]*100 // output presents in 0-1.0
                     icons: [" ", " ", " ", " "]
 
-                    rightClick: ["kitty", "-e", "nmtui"] 
+                    rightClick: ["sh", "-c", "pwvucontrol"] 
                     leftClick: []
 
                     Process {
