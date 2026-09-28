@@ -27,16 +27,6 @@ Rectangle{
                     width: 40
 
                     PlaceholderText{
-                        text: ``
-
-                    }
-
-                }
-                PlaceholderButton{
-                    radius: 20
-                    width: 40
-
-                    PlaceholderText{
                         text: ""
 
                     }
@@ -52,6 +42,28 @@ Rectangle{
                     }
 
                 }
+                PlaceholderButton{
+                    radius: 20
+                    width: 40
+
+                    PlaceholderText{
+                        text: muteStateCollector.text == 1 ? ` ` : ``
+
+                    }
+                    Process{
+                        id: micToggle
+                        command: ["sh", "-c", `wpctl set-mute @DEFAULT_AUDIO_SOURCE@ ${micState}`]
+                        running: false
+                    }
+                    Process{
+                        command: ["sh", "-c", `wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo 1 || echo 0`]
+                        running: true
+                        onRunningChanged: if (!running) running = true
+                        stdout: StdioCollector{ id: muteStateCollector }
+                    }
+
+                }
+
                 ThresholdButton{
                     value: audioCollector.text.split(':')[1]*100 // output presents in 0-1.0
                     icons: [" ", " ", " ", " "]
@@ -65,15 +77,8 @@ Rectangle{
                         stdout: StdioCollector {
                             id: audioCollector 
                         }
-                    }
-
-                    Timer{
-                        running:true
-                        repeat: true
-
-                        onTriggered: {
-                            audioOutQuery.running= true 
-                        }
+                        running: true
+                        onRunningChanged: if (!running) running = true
                     }
 
                 }
@@ -92,15 +97,9 @@ Rectangle{
                         stdout: StdioCollector {
                             id: timeCollector 
                         }
-                    }
+                        running: true
+                        onRunningChanged: if (!running) running = true
 
-                    Timer{
-                        running:true
-                        repeat: true
-
-                        onTriggered: {
-                            wifiQuery.running= true 
-                        }
                     }
 
                 }
