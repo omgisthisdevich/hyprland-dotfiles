@@ -32,16 +32,9 @@ Rectangle{
                     }
 
                 }
-                PlaceholderButton{
-                    radius: 20
-                    width: 40
 
-                    PlaceholderText{
-                        text: "󰂯"
+                BluetoothComponent{}
 
-                    }
-
-                }
                 PlaceholderButton{
                     radius: 20
                     width: 40

@@ -24,7 +24,7 @@ Rectangle {
 
         for (let i = iconNum  -1 ; i >= 0 ;  i--) {
             if (value >= 100/iconNum * i) {
-                console.log(value, '|', 100/iconNum * i)
+                // console.log(value, '|', 100/iconNum * i)
                 return icons[i]
             }
         }
