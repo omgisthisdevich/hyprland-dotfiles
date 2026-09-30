@@ -8,9 +8,10 @@ PlaceholderButton{
     width: 40
     id: btn
 
-    //var deviceList: []
+    property var deviceList: bluetoothDevices.text.split('\n')
+
     buttonClick: () => { 
-        popupWindow.visible = !popupWindow.visible
+        popupLoader.active = !popupLoader.active
     }
     PlaceholderText{
         text: "󰂯"                    
@@ -18,21 +19,49 @@ PlaceholderButton{
     Process{
         id: bluetoothQuery
         running: true
-        command: ["sh", "-c", "bluetoothctl devices Connected"]
+        command: ["sh", "-c", "bluetoothctl devices Connected | cut -d' ' -f3-"]
         stdout: StdioCollector{
             id: bluetoothDevices
         }
     }
 
-    PanelWindow {
-        visible: false
-        id: popupWindow
-        implicitWidth: 500
-        implicitHeight: 550
+    LazyLoader {
+        id: popupLoader
+        active: false
 
-        anchors { top: true; right: true }
-        margins { top: 70; right: 10 }   // top = your bar's height, so it sits below the bar
-        exclusionMode: ExclusionMode.Ignore   // do
+        PanelWindow {
+            id: popupWindow
+            implicitWidth: 300
+            implicitHeight: column.implicitHeight
+
+            anchors { top: true; right: true }
+            margins { top: 70; right: 10 }   
+            exclusionMode: ExclusionMode.Ignore 
+
+            property int n: deviceList.length
+
+            Column {
+                id: column
+                anchors.fill: parent
+                spacing: 4
+
+                Repeater {
+                    model: popupWindow.n
+
+                    Rectangle {
+                        width: parent.width
+                        height: 24
+                        color: "#333333"
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: deviceList[index]
+                            color: "white"
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
