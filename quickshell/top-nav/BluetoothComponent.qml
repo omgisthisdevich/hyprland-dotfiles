@@ -1,9 +1,11 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
 
+import "placeholderComponents" as Ph
 
-PlaceholderButton{
+Ph.PlaceholderButton{
     radius: 20
     width: 40
     id: btn
@@ -13,13 +15,13 @@ PlaceholderButton{
     buttonClick: () => { 
         popupLoader.active = !popupLoader.active
     }
-    PlaceholderText{
-        text: "󰂯"                    
+    Ph.PlaceholderText{
+        text: deviceList.length > 0 ? "" : "󰂯"                    
     }
     Process{
         id: bluetoothQuery
         running: true
-        command: ["sh", "-c", "bluetoothctl devices Connected | cut -d' ' -f3-"]
+        command: ["sh", "-c", "bluetoothctl devices Connected | cut -d' ' -f2-"]
         stdout: StdioCollector{
             id: bluetoothDevices
         }
@@ -31,31 +33,39 @@ PlaceholderButton{
 
         PanelWindow {
             id: popupWindow
-            implicitWidth: 300
+            implicitWidth: 200
             implicitHeight: column.implicitHeight
 
             anchors { top: true; right: true }
-            margins { top: 70; right: 10 }   
+            margins { top: 50; right: 10 }   
             exclusionMode: ExclusionMode.Ignore 
 
-            property int n: deviceList.length
+            property int n: deviceList.length - 1
+
+            // close the popup when it is unfocused
+            HyprlandFocusGrab {
+                windows: [popupWindow]
+                active: true
+                onCleared: popupLoader.active = false
+            }
 
             Column {
                 id: column
                 anchors.fill: parent
-                spacing: 4
 
                 Repeater {
                     model: popupWindow.n
+                    
 
                     Rectangle {
                         width: parent.width
                         height: 24
                         color: "#333333"
+                        property var uuid : deviceList[index].split(' ')[0]
 
                         Text {
                             anchors.centerIn: parent
-                            text: deviceList[index]
+                            text: deviceList[index].split(' ')[1]
                             color: "white"
                         }
                     }

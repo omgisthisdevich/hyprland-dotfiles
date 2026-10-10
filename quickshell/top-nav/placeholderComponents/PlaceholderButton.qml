@@ -6,7 +6,7 @@ Rectangle {
     color: mouseArea.containsMouse ? "#555555" : "#333333"
     radius: 4
 
-    property var buttonClick
+    property var buttonClick: {}
 
     MouseArea {
         id: mouseArea

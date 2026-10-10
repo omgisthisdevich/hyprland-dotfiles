@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Io
 
+import "placeholderComponents" as Ph
 
 Rectangle{
     color: "transparent"
@@ -12,7 +13,6 @@ Rectangle{
         anchors.right: parent.right 
         anchors.verticalCenter: parent.verticalCenter
 
-
         Rectangle{
             implicitWidth: innerRow.implicitWidth
             implicitHeight: innerRow.implicitHeight
@@ -21,25 +21,35 @@ Rectangle{
             RowLayout{
                 id: innerRow
                 anchors.fill: parent
+                spacing: 0
 
-                PlaceholderButton{
-                    radius: 20
-                    width: 40
+                Rectangle{
+                    width: 50
+                    height: 30
+                    color: "white"
 
-                    PlaceholderText{
-                        text: ""
+                    Ph.PlaceholderButton{
+                        radius: 20
+                        width: 40
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+
+                        Ph.PlaceholderText{
+                            text: ""
+
+                        }
 
                     }
-
                 }
+
 
                 BluetoothComponent{}
 
-                PlaceholderButton{
+                Ph.PlaceholderButton{
                     radius: 20
                     width: 40
 
-                    PlaceholderText{
+                    Ph.PlaceholderText{
                         text: muteStateCollector.text == 1 ? ` ` : ``
 
                     }
