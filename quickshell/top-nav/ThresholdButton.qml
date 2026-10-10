@@ -2,6 +2,8 @@ import QtQuick
 import Quickshell.Widgets
 import Quickshell.Io
 
+import "placeholderComponents" as Ph
+
 Rectangle {
     id: btn
     width: 50
@@ -14,7 +16,7 @@ Rectangle {
     property var rightClick: ["kitty", "-e"] 
     property var leftClick: ["kitty", "-e"] 
 
-    PlaceholderText{
+    Ph.PlaceholderText{
         id: iconValue
         text: iconForValue() 
     }

@@ -3,6 +3,7 @@ import Quickshell.Io
 import QtQuick.Layouts
 import Quickshell.Services.Mpris
 
+import "placeholderComponents" as Ph
 
 Rectangle{
 
@@ -10,7 +11,7 @@ Rectangle{
     color: "transparent"
 
 
-    PlaceholderButton{
+    Ph.PlaceholderButton{
         color: "#7d3dfc"
         width: hoverArea.containsMouse ? 300 : 200 
         height: parent.height - 20
@@ -34,7 +35,7 @@ Rectangle{
 
         property var spotify: Mpris.players.values.find(p => p.identity === "Spotify")
 
-        PlaceholderText {
+        Ph.PlaceholderText {
             //text: spotify ? spotify.trackTitle + " - " + spotify.trackArtist : "Nothing playing"
             text: `${Mpris.players.values[0].trackArtist} 󰝚  ${Mpris.players.values[0].trackTitle}`.slice(0, 30) 
             color: "white"
@@ -44,7 +45,7 @@ Rectangle{
     }
 
 
-    PlaceholderButton{
+    Ph.PlaceholderButton{
         id: timedateContainer
         width: 300
         height: parent.height - 20 
@@ -52,7 +53,7 @@ Rectangle{
 
         anchors.centerIn: parent
 
-        PlaceholderText{
+        Ph.PlaceholderText{
             text: timeCollector.text
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter

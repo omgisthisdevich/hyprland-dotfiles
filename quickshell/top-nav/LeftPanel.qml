@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
 
+import "placeholderComponents" as Ph
 
 Rectangle{
     anchors.fill: parent
@@ -15,14 +16,14 @@ Rectangle{
         Repeater{
             model: Hyprland.workspaces
 
-            PlaceholderButton{
+            Ph.PlaceholderButton{
                 radius: 20
                 Layout.preferredWidth: modelData.focused ? 60 : 40
 
                 required property var modelData
                 color: modelData.focused ?  "#ac82ff" : "black"
 
-                PlaceholderText{
+                Ph.PlaceholderText{
                     text: `${modelData.id}`
                     color: modelData.focused ? "black" : "white"
                 }

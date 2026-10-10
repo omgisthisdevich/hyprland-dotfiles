@@ -11,7 +11,7 @@ PanelWindow {
 
     color: "transparent"
 
-    implicitHeight: 70 
+    implicitHeight: 60 
 
     RowLayout{
         anchors.fill: parent
