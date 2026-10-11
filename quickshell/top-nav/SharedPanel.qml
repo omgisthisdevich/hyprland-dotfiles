@@ -6,6 +6,7 @@ LazyLoader {
     id: root
     active: false
     property Component content
+    property var panelColor: "transparent"
 
     PanelWindow {
         id: popupWindow
@@ -27,7 +28,7 @@ LazyLoader {
         Rectangle{
             anchors.fill: parent
             radius: 20
-            color: "#333333"
+            color: root.panelColor
 
             Loader {
                 id: contentLoader
