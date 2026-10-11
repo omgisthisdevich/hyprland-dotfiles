@@ -23,17 +23,23 @@ Rectangle{
                 id: innerRow
                 anchors.fill: parent
 
+                property var itemColor: "#ad9dfa"
+
                 Cb.ConvexedButton{
                     width: 40
+                    color: innerRow.itemColor
                     Ph.PlaceholderText{
                         text: ""
                     }
                 }
 
-                BluetoothComponent{}
+                BluetoothComponent{
+                    color: innerRow.itemColor
+                }
 
                 Ph.PlaceholderButton{
                     radius: 20
+                    color: innerRow.itemColor
                     width: 40
 
                     Ph.PlaceholderText{
@@ -60,6 +66,7 @@ Rectangle{
                 ThresholdButton{
                     value: audioCollector.text.split(':')[1]*100 // output presents in 0-1.0
                     icons: [" ", " ", " ", " "]
+                    color: innerRow.itemColor
 
                     rightClick: ["sh", "-c", "pwvucontrol"] 
                     leftClick: []
@@ -80,6 +87,7 @@ Rectangle{
                 ThresholdButton{
                     value: timeCollector.text.split(':')[2]
                     icons: ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
+                    color: innerRow.itemColor
 
                     rightClick: ["kitty", "-e", "nmtui"] 
                     leftClick: []
