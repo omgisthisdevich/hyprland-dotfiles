@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell.Io
 
 import "placeholderComponents" as Ph
+import "convexedButton" as Cb
 
 Rectangle{
     color: "transparent"
@@ -22,19 +23,8 @@ Rectangle{
                 id: innerRow
                 anchors.fill: parent
 
-                Ph.PlaceholderButton{
-                    topLeftRadius: 20
-                    topRightRadius: 20
+                Cb.ConvexedButton{
                     width: 40
-                    buttonClick: () => {
-                        corners.leftFlare = true
-                        corners.rightFlare = true
-                    }
-
-                    ConvexCorner{
-                        id: corners
-                                            }
-
                     Ph.PlaceholderText{
                         text: ""
                     }

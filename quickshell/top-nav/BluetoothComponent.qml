@@ -38,7 +38,7 @@ Ph.PlaceholderButton{
                     Rectangle {
                         width: parent.width
                         height: 24
-                        color: "#333333"
+                        color: "white"
 
                         Text {
                             anchors.centerIn: parent

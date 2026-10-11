@@ -14,7 +14,7 @@ LazyLoader {
         color: "transparent"
 
         anchors { top: true; right: true }
-        margins { top: 45; right: 10 }   
+        margins { top: 45 }   
 
         exclusionMode: ExclusionMode.Ignore 
 
