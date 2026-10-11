@@ -25,10 +25,15 @@ Rectangle{
                 Ph.PlaceholderButton{
                     topLeftRadius: 20
                     topRightRadius: 20
-
                     width: 40
+                    buttonClick: () => {
+                        corners.leftFlare = true
+                        corners.rightFlare = true
+                    }
 
-                    ConvexCorner{}
+                    ConvexCorner{
+                        id: corners
+                                            }
 
                     Ph.PlaceholderText{
                         text: ""
