@@ -7,9 +7,10 @@ Item {
 
     property int radius: 12
     property color color: parent.color
-    property bool leftFlare: true
-    property bool rightFlare: true
+    property bool leftFlare: false 
+    property bool rightFlare: false
 
+    
     Shape {
         visible: root.rightFlare
         x: root.width

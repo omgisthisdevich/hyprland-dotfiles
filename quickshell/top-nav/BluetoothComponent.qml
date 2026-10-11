@@ -27,45 +27,22 @@ Ph.PlaceholderButton{
         }
     }
 
-    LazyLoader {
+
+    SharedPanel{
         id: popupLoader
-        active: false
-
-        PanelWindow {
-            id: popupWindow
-            implicitWidth: 200
-            implicitHeight: column.implicitHeight
-
-            anchors { top: true; right: true }
-            margins { top: 50; right: 10 }   
-            exclusionMode: ExclusionMode.Ignore 
-
-            property int n: deviceList.length - 1
-
-            // close the popup when it is unfocused
-            HyprlandFocusGrab {
-                windows: [popupWindow]
-                active: true
-                onCleared: popupLoader.active = false
-            }
-
+        content: Component {
             Column {
-                id: column
-                anchors.fill: parent
-
                 Repeater {
-                    model: popupWindow.n
-                    
+                    model: deviceList
 
                     Rectangle {
                         width: parent.width
                         height: 24
                         color: "#333333"
-                        property var uuid : deviceList[index].split(' ')[0]
 
                         Text {
                             anchors.centerIn: parent
-                            text: deviceList[index].split(' ')[1]
+                            text: modelData.split(' ').slice(1).join(' ')
                             color: "white"
                         }
                     }
@@ -73,6 +50,4 @@ Ph.PlaceholderButton{
             }
         }
     }
-
 }
-
