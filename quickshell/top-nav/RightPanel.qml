@@ -21,27 +21,19 @@ Rectangle{
             RowLayout{
                 id: innerRow
                 anchors.fill: parent
-                spacing: 0
 
-                Rectangle{
-                    width: 50
-                    height: 30
-                    color: "white"
+                Ph.PlaceholderButton{
+                    topLeftRadius: 20
+                    topRightRadius: 20
 
-                    Ph.PlaceholderButton{
-                        radius: 20
-                        width: 40
-                        anchors.horizontalCenter: parent.horizontalCenter
+                    width: 40
 
+                    ConvexCorner{}
 
-                        Ph.PlaceholderText{
-                            text: ""
-
-                        }
-
+                    Ph.PlaceholderText{
+                        text: ""
                     }
                 }
-
 
                 BluetoothComponent{}
 
