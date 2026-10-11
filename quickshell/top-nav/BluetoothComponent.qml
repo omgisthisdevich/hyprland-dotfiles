@@ -30,6 +30,8 @@ Ph.PlaceholderButton{
 
     SharedPanel{
         id: popupLoader
+        panelColor: btn.color
+
         content: Component {
             Column {
                 Repeater {
@@ -38,12 +40,12 @@ Ph.PlaceholderButton{
                     Rectangle {
                         width: parent.width
                         height: 24
-                        color: "white"
+                        color: "transparent"
 
                         Text {
                             anchors.centerIn: parent
                             text: modelData.split(' ').slice(1).join(' ')
-                            color: "white"
+                            color: "#2f008c"
                         }
                     }
                 }
