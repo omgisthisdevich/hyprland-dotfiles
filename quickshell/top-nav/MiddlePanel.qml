@@ -12,7 +12,7 @@ Rectangle{
 
 
     Ph.PlaceholderButton{
-        color: "#7d3dfc"
+       // color: "#7d3dfc"
         width: hoverArea.containsMouse ? 300 : 200 
         height: parent.height - 20
         radius: 30
