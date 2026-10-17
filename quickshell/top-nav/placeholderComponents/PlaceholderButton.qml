@@ -3,7 +3,7 @@ import QtQuick
 Rectangle {
     width: 30
     height: 30
-    color: mouseArea.containsMouse ? "#555555" : "#333333"
+    color: mouseArea.containsMouse ? "#fcbfa4" : "#95abfc"
 
     property var buttonClick: {}
 
