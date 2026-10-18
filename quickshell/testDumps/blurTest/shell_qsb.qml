@@ -6,8 +6,8 @@ PanelWindow {
     id: win
     anchors.top: true
     margins.top: 40
-    implicitWidth: 400
-    implicitHeight: 120
+    implicitWidth: 800
+    implicitHeight: 220
     exclusiveZone: 0
     color: "transparent"
 
@@ -27,8 +27,8 @@ PanelWindow {
         width: wall.width
         height: wall.height
         blurEnabled: true
-        blur: 1.0
-        blurMax: 64
+        blur: 0.2
+        blurMax: 34
     }
 
     ShaderEffectSource {

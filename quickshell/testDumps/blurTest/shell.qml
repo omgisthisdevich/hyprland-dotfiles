@@ -1,0 +1,89 @@
+import QtQuick
+import QtQuick.Effects
+import Quickshell
+
+PanelWindow {
+    id: bar
+
+    anchors { top: true; left: true; right: true }
+    margins { top: 8; left: 8; right: 8 }
+    implicitHeight: 44
+    color: "transparent"
+
+    // Where this window's top-left sits on the screen (matches the margins).
+    readonly property point screenOrigin: Qt.point(margins.left, margins.top)
+    readonly property size screenDims: Qt.size(screen.width, screen.height)
+
+    // ---- shared blurred wallpaper (one copy, used by every button) ----
+    Image {
+        id: wall
+        visible: false
+        width: bar.screenDims.width
+        height: bar.screenDims.height
+        fillMode: Image.PreserveAspectCrop
+        source: "file://" + Quickshell.env("HOME") + "//.config/hypr/wallpapers/malenia-ER-i.jpg"
+    }
+
+    MultiEffect {
+        id: blurred
+        visible: false
+        source: wall
+        width: wall.width
+        height: wall.height
+        blurEnabled: true
+        blurMax: 64
+        blur: 0.3
+        autoPaddingEnabled: false
+    }
+
+    ShaderEffectSource {
+        id: wallpaperTex
+        visible: false
+        sourceItem: blurred
+        width: wall.width
+        height: wall.height
+        live: true   // set false + scheduleUpdate() once the image loads to save GPU
+    }
+
+    // ---- the buttons ----
+    Row {
+        x: 8
+        spacing: 8
+
+        Repeater {
+            model: [
+                { label: "Apps" },
+                { label: "Files" },
+                { label: "Settings" }
+            ]
+
+            GlassButton {
+                required property var modelData
+                id: test
+
+                text: modelData.label
+                wallpaper: wallpaperTex
+                windowOrigin: bar.screenOrigin
+                screenSize: bar.screenDims
+                width: 800
+
+                onClicked: console.log("clicked", modelData.label)
+            }
+        }
+    }
+
+    // You can also drop one in by hand:
+    GlassButton {
+        anchors.right: parent.right
+        anchors.rightMargin: 8
+        anchors.verticalCenter: parent.verticalCenter
+
+        text: "Power"
+        tintColor: "#ff5566"
+        tintStrength: 0.25
+        wallpaper: wallpaperTex
+        windowOrigin: bar.screenOrigin
+        screenSize: bar.screenDims
+        
+    }
+}
