@@ -18,6 +18,34 @@ Rectangle{
             implicitWidth: innerRow.implicitWidth
             implicitHeight: innerRow.implicitHeight
             color: "transparent"
+            id: root
+
+            SharedPanel {
+                id: sharedPanel
+                panelColor: root.panelColor
+                content: root.panelContent
+            }
+
+            property Component panelContent: null
+            property color panelColor: "white"
+            property Item panelOwner: null
+
+            function togglePanel(owner, content, color) {
+                // clicking the same owner again closes the panel
+                if (sharedPanel.active && panelOwner === owner) {
+                    closePanel()
+                    return
+                }
+                // otherwise (re)open with the new owner's content
+                panelOwner = owner
+                panelColor = color
+                panelContent = content
+                sharedPanel.active = true
+            }
+            function closePanel() {
+                sharedPanel.active = false
+                panelOwner = null
+            }
 
             RowLayout{
                 id: innerRow
@@ -33,10 +61,10 @@ Rectangle{
                     }
                 }
 
-                BluetoothComponent{
+                BluetoothComponent {
                     color: innerRow.itemColor
+                    panel: root
                 }
-
                 Ph.PlaceholderButton{
                     radius: 20
                     color: innerRow.itemColor
@@ -102,10 +130,8 @@ Rectangle{
                         onRunningChanged: if (!running) running = true
 
                     }
-
                 }
             }
         }
-
     }
 }
