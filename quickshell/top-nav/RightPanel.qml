@@ -60,10 +60,18 @@ Rectangle{
                         text: ""
                     }
                 }
+                BluetoothComponent {
+                    color: innerRow.itemColor
+                    width: 40
+                    panel: root
+                    id: bt2
+                }
 
                 BluetoothComponent {
                     color: innerRow.itemColor
+                    width: 40
                     panel: root
+                    id: bt
                 }
                 Ph.PlaceholderButton{
                     radius: 20
@@ -74,9 +82,9 @@ Rectangle{
                         text: muteStateCollector.text == 1 ? ` ` : ``
 
                     }
-                    buttonClick: () => {
+                    Component.onCompleted: addClickHandler(() => {
                         micToggle.running = true
-                    }                    
+                    }) 
                     Process{
                         id: micToggle
                         command: ["sh", "-c", `wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle`]

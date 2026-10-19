@@ -13,10 +13,21 @@ PlaceholderButton {
     bottomLeftRadius: round ? cornerRadius : 0
     bottomRightRadius: round ? cornerRadius : 0
 
-    buttonClick: () => {
+    function toggleCorners() {
+        console.log(round)
         round = !round
         toggled(round)
     }
+    function disableRoundCorners() {
+        round = false
+    }
+    function enableRoundCorners() {
+        round = true
+    }
+
+    // Component.onCompleted: addClickHandler(() => {
+    //     toggleCorners()
+    // })
 
     ConvexCorner {
         leftFlare: !root.round
