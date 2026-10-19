@@ -1,20 +1,19 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import Quickshell.Hyprland
 
+import "convexedButton" as Cb
 import "placeholderComponents" as Ph
 
-Ph.PlaceholderButton{
-    radius: 20
-    width: 40
+Cb.ConvexedButton{
     id: btn
 
     required property var panel
     property var deviceList: bluetoothDevices.text.split('\n')
 
-    buttonClick: () => panel.togglePanel(btn, devicePanel, btn.color)
-
+    Component.onCompleted: addClickHandler(() => {
+        panel.togglePanel(btn, devicePanel, btn.color)
+    })
     Ph.PlaceholderText{
         text: deviceList.length > 0 ? "" : "󰂯"                    
     }
@@ -30,6 +29,7 @@ Ph.PlaceholderButton{
 
     Component {
         id: devicePanel
+       
 
         Column {
             Repeater {
