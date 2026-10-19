@@ -10,11 +10,11 @@ Ph.PlaceholderButton{
     width: 40
     id: btn
 
+    required property var panel
     property var deviceList: bluetoothDevices.text.split('\n')
 
-    buttonClick: () => { 
-        popupLoader.active = !popupLoader.active
-    }
+    buttonClick: () => panel.togglePanel(btn, devicePanel, btn.color)
+
     Ph.PlaceholderText{
         text: deviceList.length > 0 ? "" : "󰂯"                    
     }
@@ -28,25 +28,22 @@ Ph.PlaceholderButton{
     }
 
 
-    SharedPanel{
-        id: popupLoader
-        panelColor: btn.color
+    Component {
+        id: devicePanel
 
-        content: Component {
-            Column {
-                Repeater {
-                    model: deviceList
+        Column {
+            Repeater {
+                model: btn.deviceList
 
-                    Rectangle {
-                        width: parent.width
-                        height: 24
-                        color: "transparent"
+                Rectangle {
+                    width: parent.width
+                    height: 24
+                    color: "transparent"
 
-                        Text {
-                            anchors.centerIn: parent
-                            text: modelData.split(' ').slice(1).join(' ')
-                            color: "#2f008c"
-                        }
+                    Text {
+                        anchors.centerIn: parent
+                        text: modelData.split(' ').slice(1).join(' ')
+                        color: "#2f008c"
                     }
                 }
             }
