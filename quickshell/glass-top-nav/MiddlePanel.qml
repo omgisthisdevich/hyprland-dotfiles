@@ -12,6 +12,6 @@ Row {
         width: 200
 
         tintColor: "#ff5566"
-        tintStrength: 0.25
+        tintStrength: 0.10
     }
 }
