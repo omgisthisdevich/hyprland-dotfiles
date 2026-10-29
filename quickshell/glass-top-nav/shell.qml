@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Effects
 import Quickshell
 
-
 ShellRoot {
     Variants {
         model: Quickshell.screens
@@ -28,7 +27,7 @@ ShellRoot {
                 width: bar.screenDims.width
                 height: bar.screenDims.height
                 fillMode: Image.PreserveAspectCrop
-                source: "file://" + Quickshell.env("HOME") + "//.config/hypr/wallpapers/malenia-ER-i.jpg"
+                source: "file:/home/devich/.config/hypr/wallpapers/malenia-ER-i.jpg"
             }
 
             MultiEffect {
@@ -52,46 +51,29 @@ ShellRoot {
                 live: true   // set false + scheduleUpdate() once the image loads to save GPU
             }
 
-            // ---- the buttons ----
-            Row {
-                x: 8
-                spacing: 8
-
-                Repeater {
-                    model: [
-                        { label: "Apps" },
-                        { label: "Files" },
-                        { label: "Settings" }
-                    ]
-
-                    GlassButton {
-                        required property var modelData
-                        id: test
-
-                        text: modelData.label
-                        wallpaper: wallpaperTex
-                        windowOrigin: bar.screenOrigin
-                        screenSize: bar.screenDims
-                        width: 200
-
-                        onClicked: console.log("clicked", modelData.label)
-                    }
-                }
+            // ---- the content ---
+            LeftPanel {
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
             }
-
-            GlassButton {
-                anchors.right: parent.right
-                anchors.rightMargin: 8
+            MiddlePanel{
+                anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
 
-                text: "Power"
-                tintColor: "#ff5566"
-                tintStrength: 0.25
-                wallpaper: wallpaperTex
-                windowOrigin: bar.screenOrigin
-                screenSize: bar.screenDims
-
             }
+            // GlassButton {
+            //     anchors.right: parent.right
+            //     anchors.rightMargin: 8
+            //     anchors.verticalCenter: parent.verticalCenter
+
+            //     text: "Power"
+            //     tintColor: "#ff5566"
+            //     tintStrength: 0.25
+            //     wallpaper: wallpaperTex
+            //     windowOrigin: bar.screenOrigin
+            //     screenSize: bar.screenDims
+
+            // }
         }
     }
 }

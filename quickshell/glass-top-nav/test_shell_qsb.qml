@@ -17,7 +17,7 @@ PanelWindow {
         visible: false
         width: win.screen.width
         height: win.screen.height
-        source: "file:/home/devich/.config/hypr/wallpapers/malenia-ER.jpg"
+        source: "file:/home/devich/.config/hypr/wallpapers/malenia-ER-i.jpg"
         fillMode: Image.PreserveAspectCrop
     }
 
@@ -48,6 +48,6 @@ PanelWindow {
         property real radius: 28
         property color tint: Qt.rgba(1, 1, 1, 0.12)
 
-        fragmentShader: Qt.resolvedUrl("glass.frag.qsb")
+        fragmentShader: Qt.resolvedUrl("glsl/glass.frag.qsb")
     }
 }

@@ -1,5 +1,5 @@
 import QtQuick
-
+import qs.config 
 // Reusable glass button backed by glass.frag.qsb.
 //
 // Required from the parent:
@@ -77,7 +77,7 @@ Item {
                                             root.tintColor.b,
                                             root._strength)
 
-        fragmentShader: Qt.resolvedUrl("./glsl/glass.frag.qsb")
+        fragmentShader: Config.glassShader
     }
 
     Row {
