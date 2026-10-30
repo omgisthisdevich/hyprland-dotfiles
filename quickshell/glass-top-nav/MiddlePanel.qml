@@ -16,7 +16,7 @@ Row {
 
         GlassNavButton {
             id: mediaButton
-            anchors.rightMargin: -50
+//            anchors.rightMargin: -50
 
 
             // prefer Spotify, fall back to any player, or null if none
@@ -33,13 +33,21 @@ Row {
             width: hovered ? 300 : 200
             anchors.right: parent.right
 
-            tintColor: "#ffffff"
-            tintStrength: 0.10
-
             Behavior on width {
                 NumberAnimation { duration: 500; easing.type: Easing.OutCubic }
             }
         }
+    }
+    
+    // ARCH icon
+    GlassNavButton{
+        id: archIcon
+
+        text: "󰣇"
+        width: 50
+
+        textColor: Config.textColor
+        fontSize: 30
     }
 
     // ---- time / date button -----------------------------------------
@@ -49,11 +57,7 @@ Row {
         text: timeCollector.text.trim()
         textColor: Config.textColor
 
-        width: 300
-        height: 44          // two lines of text need more than the default 36
-
-        tintColor: "#ac82ff"
-        tintStrength: 0.30
+        width: 200
     }
 
     // ---- time/date logic --------------------------------------------
@@ -70,4 +74,5 @@ Row {
         triggeredOnStart: true
         onTriggered: timedateProcess.running = true
     }
+
 }
