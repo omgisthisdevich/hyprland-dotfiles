@@ -74,6 +74,11 @@ ShellRoot {
             //     screenSize: bar.screenDims
 
             // }
+            RightPanel{
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+
+            }
         }
     }
 }

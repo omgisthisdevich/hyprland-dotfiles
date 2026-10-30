@@ -31,6 +31,7 @@ Item {
     readonly property bool pressed: mouse.pressed
 
     signal clicked()
+    signal rightClicked()
 
     // ---- sizing -----------------------------------------------------
     implicitWidth: content.implicitWidth + padding * 2
@@ -108,6 +109,10 @@ Item {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
-        onClicked: root.clicked()
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onClicked: (ev) => {
+            if (ev.button === Qt.RightButton) root.rightClicked()
+            else root.clicked()
+        }
     }
 }
