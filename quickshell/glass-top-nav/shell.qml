@@ -19,11 +19,13 @@ ShellRoot {
             // Where this window's top-left sits on the screen (matches the margins).
             readonly property point screenOrigin: Qt.point(margins.left, margins.top)
             readonly property size screenDims: Qt.size(screen.width, screen.height)
+            readonly property Item wallpaperSource: wallpaperTex
 
             // ---- shared blurred wallpaper (one copy, used by every button) ----
             Image {
                 id: wall
                 visible: false
+                asynchronous: false
                 width: bar.screenDims.width
                 height: bar.screenDims.height
                 fillMode: Image.PreserveAspectCrop
@@ -61,19 +63,6 @@ ShellRoot {
                 anchors.verticalCenter: parent.verticalCenter
 
             }
-            // GlassButton {
-            //     anchors.right: parent.right
-            //     anchors.rightMargin: 8
-            //     anchors.verticalCenter: parent.verticalCenter
-
-            //     text: "Power"
-            //     tintColor: "#ff5566"
-            //     tintStrength: 0.25
-            //     wallpaper: wallpaperTex
-            //     windowOrigin: bar.screenOrigin
-            //     screenSize: bar.screenDims
-
-            // }
             RightPanel{
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter

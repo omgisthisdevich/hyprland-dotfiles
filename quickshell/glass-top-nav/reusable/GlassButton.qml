@@ -35,30 +35,28 @@ BaseButton {
     // The shader samples the wallpaper at this item's *screen* position,
     // so we need to know where we are. Call updateOrigin() manually if an
     // ancestor moves without this item's own x/y changing.
-    property point _origin: Qt.point(0, 0)
-
-    function updateOrigin() {
-        const p = root.mapToItem(null, 0, 0);
-        _origin = Qt.point(windowOrigin.x + p.x, windowOrigin.y + p.y);
+    readonly property point _origin: {
+        let px = windowOrigin.x
+        let py = windowOrigin.y
+        for (let it = root; it && it.parent; it = it.parent) {
+            px += it.x
+            py += it.y
+        }
+        return Qt.point(px, py)
     }
-
-    onXChanged: updateOrigin()
-    onYChanged: updateOrigin()
-    onParentChanged: updateOrigin()
-    onVisibleChanged: updateOrigin()
-    onWindowOriginChanged: updateOrigin()
-    Component.onCompleted: updateOrigin()
-
+    
     // ---- hover / press animation -----------------------------------
     property real _strength: pressed ? pressStrength
-                           : hovered ? hoverStrength
-                           : tintStrength
+    : hovered ? hoverStrength
+    : tintStrength
     Behavior on _strength { NumberAnimation { duration: 120; easing.type: Easing.OutCubic } }
 
     // ---- visuals ----------------------------------------------------
     ShaderEffect {
         id: shader
         anchors.fill: parent
+
+        visible: root.wallpaper !== null
 
         // names must match the uniforms in glass.frag
         property variant source: root.wallpaper
