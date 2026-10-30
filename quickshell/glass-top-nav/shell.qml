@@ -25,7 +25,6 @@ ShellRoot {
             Image {
                 id: wall
                 visible: false
-                asynchronous: false
                 width: bar.screenDims.width
                 height: bar.screenDims.height
                 fillMode: Image.PreserveAspectCrop
