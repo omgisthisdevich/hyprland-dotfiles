@@ -17,11 +17,7 @@ Row {
             textColor: Config.textColor
             padding: 8                      // see note below
 
-            width: modelData.focused ? 60 : 40
-            cornerRadius: 20
-
-            tintColor: modelData.focused ? "#ac82ff" : "#ffffff"
-            tintStrength: modelData.focused ? 0.45 : 0.10
+            width: modelData.focused ? 60 : 44   
 
             Behavior on width {
                 NumberAnimation { duration: 200; easing.type: Easing.OutCubic }

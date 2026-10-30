@@ -13,6 +13,9 @@ Rs.GlassButton {
     windowOrigin: bar ? bar.screenOrigin : Qt.point(0, 0)
     screenSize: bar ? bar.screenDims : Qt.size(0, 0)
 
+    height: 44 
+    width:44
+
     Image {
         id: fallbackImage
         visible: false                 // texture source only, don't draw it

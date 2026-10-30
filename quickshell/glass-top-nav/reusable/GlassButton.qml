@@ -34,7 +34,7 @@ Item {
     signal rightClicked()
 
     // ---- sizing -----------------------------------------------------
-    implicitWidth: content.implicitWidth + padding * 2
+    implicitWidth: content.implicitHeight + padding * 2
     implicitHeight: 36
 
     // ---- screen-position tracking ----------------------------------
