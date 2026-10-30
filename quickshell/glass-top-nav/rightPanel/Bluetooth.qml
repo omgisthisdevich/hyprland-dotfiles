@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Io
-import qs
+
+import qs.reusable
 
 SegmentButton {
     id: seg
