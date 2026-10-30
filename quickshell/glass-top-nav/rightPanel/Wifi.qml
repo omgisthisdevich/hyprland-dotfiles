@@ -1,7 +1,8 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import qs                    // SegmentButton lives in the root
+
+import qs.reusable
 import qs.config
 
 SegmentButton {
