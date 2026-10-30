@@ -6,7 +6,7 @@ import qs.config
 //   wallpaper    - a screen-sized, blurred texture provider (see shell.qml)
 //   windowOrigin - top-left of the PanelWindow in screen px
 //   screenSize   - screen size in px
-Item {
+BaseButton {
     id: root
 
     // ---- public API -------------------------------------------------
@@ -26,12 +26,6 @@ Item {
     property real hoverStrength: 0.20
     property real pressStrength: 0.30
     property int padding: 16
-
-    readonly property bool hovered: mouse.containsMouse
-    readonly property bool pressed: mouse.pressed
-
-    signal clicked()
-    signal rightClicked()
 
     // ---- sizing -----------------------------------------------------
     implicitWidth: content.implicitHeight + padding * 2
@@ -101,18 +95,6 @@ Item {
             font.pixelSize: root.fontSize
             font.family: root.fontFamily
             anchors.verticalCenter: parent.verticalCenter
-        }
-    }
-
-    MouseArea {
-        id: mouse
-        anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: (ev) => {
-            if (ev.button === Qt.RightButton) root.rightClicked()
-            else root.clicked()
         }
     }
 }

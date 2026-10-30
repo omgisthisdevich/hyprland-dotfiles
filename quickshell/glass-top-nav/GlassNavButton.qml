@@ -9,6 +9,8 @@ Rs.GlassButton {
 
     readonly property var bar: QsWindow.window
 
+    Component.onCompleted: console.log("tex:", wallpaper, "screen:", screenSize, "origin:", windowOrigin)
+
     wallpaper: bar && bar.wallpaperSource ? bar.wallpaperSource : fallbackImage
     windowOrigin: bar ? bar.screenOrigin : Qt.point(0, 0)
     screenSize: bar ? bar.screenDims : Qt.size(0, 0)

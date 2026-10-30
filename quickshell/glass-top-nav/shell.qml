@@ -81,4 +81,5 @@ ShellRoot {
             }
         }
     }
+    TrayMenu {}
 }
