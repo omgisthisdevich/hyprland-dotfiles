@@ -4,7 +4,10 @@ import QtQuick
 import Quickshell
 
 Singleton {
+    /* Glass top-nav attribs */
     readonly property string home: Quickshell.env("HOME")
+    readonly property string configHome: "/home/devich/dotfiles/quickshell/glass-top-nav/config"
+
     readonly property string wallpaperDirectory: home + "//.config/hypr//wallpapers//"
     readonly property url glassShader: Qt.resolvedUrl("../glsl/glass.frag.qsb")
 
@@ -16,4 +19,8 @@ Singleton {
     readonly property real hoverTintStrength: 20
     readonly property int padding: 10
     readonly property color tintColor: "#ffffff"
+
+    /* Tray menu */
+    readonly property url trayMenuURL: Qt.resolvedUrl(`${home}/.config/quickshell/menus/trayMenu.qml`)
+
 }

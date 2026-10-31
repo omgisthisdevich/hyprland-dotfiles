@@ -70,5 +70,4 @@ ShellRoot {
             }
         }
     }
-    // TrayMenu {}
 }

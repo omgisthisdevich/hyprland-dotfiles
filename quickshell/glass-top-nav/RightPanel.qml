@@ -1,13 +1,22 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
+
 import qs.config
 import qs.rightPanel as RP
+import qs.cava as CV
 
 Row {
     id: root
     spacing: 6
 
+    // Cava
+    GlassNavButton {
+        width: 100
+        tintColor: "red"
+        CV.Cava { anchors.centerIn: parent }
+    }
+    
     // ---- mic toggle ---------------------------------------------------
     GlassNavButton {
         id: micButton

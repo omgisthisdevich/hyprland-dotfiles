@@ -18,4 +18,6 @@ Rs.GlassButton {
     height: 44 
     width:44
 
+    tintColor: "#0f0d85"
+
 }
