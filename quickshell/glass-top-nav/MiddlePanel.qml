@@ -1,6 +1,8 @@
 import QtQuick
 import Quickshell.Io
 import Quickshell.Services.Mpris
+import Quickshell
+
 import qs.config
 
 Row {
@@ -11,7 +13,7 @@ Row {
     // Fixed-width slot, so growing the button on hover doesn't push the
     // time button around. The button is pinned to the right and grows left.
     Item {
-        width: 300
+        width: 200 
         height: mediaButton.height
 
         GlassNavButton {
@@ -30,8 +32,7 @@ Row {
                 : "Nothing playing"
             textColor: Config.textColor
 
-            width: hovered ? 300 : 200
-            anchors.right: parent.right
+            width: 200
 
             Behavior on width {
                 NumberAnimation { duration: 500; easing.type: Easing.OutCubic }
@@ -48,6 +49,12 @@ Row {
 
         textColor: Config.textColor
         fontSize: 30
+
+        onClicked: Quickshell.execDetached([
+      "sh", "-c",
+      `qs kill -p "$1" || qs -p "$1"`, "sh",
+      Quickshell.shellPath("mainMenu.qml")
+  ])   
     }
 
     // ---- time / date button -----------------------------------------

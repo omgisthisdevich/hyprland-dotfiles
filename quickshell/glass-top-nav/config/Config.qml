@@ -20,6 +20,9 @@ Singleton {
     readonly property int padding: 10
     readonly property color tintColor: "#ffffff"
 
+    /* TAB - media */
+    readonly property url mediaGif: Qt.resolvedUrl("../mainMenu/rev-NR.gif")
+
     /* Tray menu */
     readonly property url trayMenuURL: Qt.resolvedUrl(`${home}/.config/quickshell/menus/trayMenu.qml`)
 

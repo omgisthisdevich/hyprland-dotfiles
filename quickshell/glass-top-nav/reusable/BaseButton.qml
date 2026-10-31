@@ -6,6 +6,7 @@ Item {
     id: base
 
     property string tooltip: ""
+    property bool interactive: true
 
     readonly property bool hovered: mouse.containsMouse
     readonly property bool pressed: mouse.pressed
@@ -16,8 +17,9 @@ Item {
     MouseArea {
         id: mouse
         anchors.fill: parent
+        enabled: base.interactive
         hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
+        cursorShape: base.interactive ? Qt.PointingHandCursor : Qt.ArrowCursor
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: (ev) => ev.button === Qt.RightButton ? base.rightClicked() : base.clicked()
     }
