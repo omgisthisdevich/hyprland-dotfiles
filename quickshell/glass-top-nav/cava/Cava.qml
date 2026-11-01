@@ -12,7 +12,7 @@ Text {
     readonly property int rows: 5
 
     color: "white"
-    font.pixelSize: 8
+    font.pixelSize: text.includes("") ? 8 : 11
     font.family: "monospace"     // equal widths so the columns line up
     lineHeight: 0.5
 
@@ -23,6 +23,7 @@ Text {
             const needed = rows - r
             lines.push(values.map(v => Math.ceil(v / 20) >= needed ? "" : " ").join(" "))
         }
+        if (!lines.join("\n").includes("")) return "It's silent..."  
         return lines.join("\n")
     }
 

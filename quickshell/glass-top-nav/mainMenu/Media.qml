@@ -30,17 +30,29 @@ RowLayout {
         Layout.fillHeight: true
 
         ClippingRectangle {
+            id: mask
             anchors.centerIn: parent
             width: Math.min(parent.width, parent.height) * 0.7
             height: width
             radius: width / 2
             color: "transparent"
 
+            
             Image {
                 anchors.fill: parent
                 source: root.player ? root.player.trackArtUrl : ""
                 fillMode: Image.PreserveAspectCrop
                 asynchronous: true
+
+                NumberAnimation on rotation {
+                    from: 0
+                    to: 360
+                    duration: 10000          // 360° / 36°-per-second
+                    loops: Animation.Infinite
+                    running: true
+                    paused: !(root.player?.isPlaying ?? false)
+                }
+
             }
         }
     }

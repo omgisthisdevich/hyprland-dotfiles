@@ -17,7 +17,7 @@ PanelWindow {
     anchors.top: true
     margins.top: 60
     implicitWidth: screen.width * 0.3
-    implicitHeight: screen.height * 0.4
+    implicitHeight: screen.height * 0.3
     exclusionMode: ExclusionMode.Ignore
     color: "transparent"
 
