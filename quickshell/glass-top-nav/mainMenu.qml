@@ -3,6 +3,8 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
+import QtQuick.Effects
+
 
 import qs.config
 import qs.reusable as Rs
@@ -26,9 +28,50 @@ PanelWindow {
         active: true
         onCleared: Qt.quit()
     }    
-    Rectangle {
+    /*----------------- glass effect ------------------*/
+
+    Image {
+        id: wall
+        visible: false
+        width: win.screen.width
+        height: win.screen.height
+        source: "file:/home/devich/.config/hypr/wallpapers/malenia-ER-i.jpg"
+        fillMode: Image.PreserveAspectCrop
+    }
+
+    MultiEffect {
+        id: blurred
+        source: wall
+        width: wall.width
+        height: wall.height
+        blurEnabled: true
+        blur: 0.7
+        blurMax: 64
+    }
+
+    ShaderEffectSource {
+        id: blurTex
+        sourceItem: blurred
+        hideSource: true
+    }
+
+    ShaderEffect {
         anchors.fill: parent
-        radius: 20
+
+        property variant source: blurTex
+        property vector2d size: Qt.vector2d(width, height)
+        // panel is top-anchored, so layer-shell centers it horizontally
+        property vector2d origin: Qt.vector2d((win.screen.width - win.width) / 2, win.margins.top)
+        property vector2d screenSize: Qt.vector2d(win.screen.width, win.screen.height)
+        property real radius: 28
+        property color tint: Qt.rgba(174, 172, 250, 0.6)
+
+        fragmentShader: Qt.resolvedUrl("glsl/glass.frag.qsb")
+    }
+
+    /*-----------------              ------------------*/
+    Item {
+        anchors.fill: parent
 
         ColumnLayout {
             anchors.fill: parent
@@ -57,7 +100,6 @@ PanelWindow {
                         Rectangle {
                             anchors.fill: parent
                             radius: height / 2
-                            color: "white"
                             opacity: tab.selected ? 0.18
                                    : tab.hovered ? 0.08
                                    : 0

@@ -25,7 +25,7 @@ RowLayout {
     }
 
     // ---- column 1: cover ----------------------------------------------
-    Rectangle {
+    Item {
         Layout.fillWidth: true
         Layout.fillHeight: true
 
@@ -58,7 +58,7 @@ RowLayout {
     }
 
     // ---- column 2: info + controls ------------------------------------
-    Rectangle {
+    Item {
         Layout.fillWidth: true
         Layout.fillHeight: true
 
@@ -156,7 +156,7 @@ RowLayout {
     }
 
     // ---- column 3 -------------------------------------------------------
-    Rectangle {
+    Item {
         Layout.fillWidth: true
         Layout.fillHeight: true
         clip: true

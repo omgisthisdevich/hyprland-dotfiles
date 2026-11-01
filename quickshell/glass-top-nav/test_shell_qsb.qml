@@ -27,7 +27,7 @@ PanelWindow {
         width: wall.width
         height: wall.height
         blurEnabled: true
-        blur: 0.2
+        blur: 0.5
         blurMax: 34
     }
 
